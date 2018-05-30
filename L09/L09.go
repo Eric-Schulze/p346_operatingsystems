@@ -16,8 +16,16 @@ func main() {
 	}
 
 	name := args[0]
-	rows, _ := strconv.Atoi(args[1])
-	nibbles, _ := strconv.Atoi(args[2])
+	rows, err := strconv.Atoi(args[1])
+	if err != nil {
+		fmt.Println("Error: The second argument must be an integer value for the number of rows in the disk")
+		return
+	}
+	nibbles, err := strconv.Atoi(args[2])
+	if err != nil {
+		fmt.Println("Error: The third argument must be an integer value for the number of nibbles in each row")
+		return
+	}
 
 	d := disk.BuildFormattedDisk(nibbles, rows, name)
 	disk.PrintDisk(d)
